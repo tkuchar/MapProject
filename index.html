@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style type="text/css">
+        html,
+        body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        #site-container {
+          height: 100%;
+          position: relative;
+        }
+        #options-container {
+          height: 100%;
+          width: 350px;
+          text-align: left;
+          padding: 10px;
+        }
+        h3 {
+          margin-top: 0;
+          padding-top: 10px;
+        }
+        #option-menu {
+          width: 85%;
+        }
+        .fa-filter {
+          color: green;
+          padding-left: 5px;
+        }
+        #map {
+          bottom:0px;
+          height: 100%;
+          left: 360px;
+          right: 0px;
+          position: absolute;
+        }
+        .hide-menu-icon {
+          float:right;
+          padding-right: 15px;
+        }
+        .hide-class {
+        }
+        #filter-menu {
+          margin-bottom: 10px;
+        }
+    </style>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+  </head>
+  <body>
+    <div id="site-container">
+      <div id="options-container">
+        <h3> Find a Restaurant <i class="fas fa-bars hide-menu-icon" onclick="hideMenu()"></i></h3>
+          <div>
+            <h5 id="filter-menu"> Filter Menu </h5>
+            <!-- TODO: Use data-bind on view -->
+            <!-- Fill menu with types to search by -->
+            <tbody data-bind="foreach:placeList">
+              <tr>
+                <td><input data-bind=""/></td>
+              </tr>
+            <!-- TODO: Create function to call filter when clicked. -->
+            <i id="filter-button" class="fa fa-filter" aria-hidden="true"></i>
+          </div>
+        </div>
+    <div id="map"/>
+    <script async defer src="node_modules\knockout\build\output\knockout-latest.debug.js"></script>
+    <script async defer src="js/app.js"></script>
+    <script async defer src="js/main.js"></script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyD3_ycKU9g4CmZUTEa6VjEcZ7KL8i-x94E&v=3&callback=initMap">
+      // TODO: Add error function which is called here, onerror = .
+    </script>
+  </body>
+</html>
