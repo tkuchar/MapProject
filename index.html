@@ -56,16 +56,16 @@
             <h5 id="filter-menu"> Filter Menu </h5>
             <!-- TODO: Use data-bind on view -->
             <!-- Fill menu with types to search by -->
-            <tbody data-bind="foreach:placeList">
-              <tr>
-                <td><input data-bind=""/></td>
-              </tr>
+              <select data-bind="foreach:placeList">
+                <option data-bind="text:title"></option>
+              </select>
             <!-- TODO: Create function to call filter when clicked. -->
             <i id="filter-button" class="fa fa-filter" aria-hidden="true"></i>
           </div>
+          <div id="fourSquare"></div>
         </div>
     <div id="map"/>
-    <script async defer src="node_modules\knockout\build\output\knockout-latest.debug.js"></script>
+    <script src="node_modules\knockout\build\output\knockout-latest.debug.js"></script>
     <script async defer src="js/app.js"></script>
     <script async defer src="js/main.js"></script>
     <script async defer
