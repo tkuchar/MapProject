@@ -35,14 +35,12 @@ function hideMenu() {
     document.getElementById("options-container").setAttribute("class","hide-class");
 };
 
-// FOURSQUARE API key.
+// FOURSQUARE API
 // Client ID: DX3A3OBAMQVOA3O4FCT5HI25FNKZ2C1FVE3SKQOVDEUR5W05
 // Client Secret: 0X34REUZCI4ICN24NUET4BF2YEACJXZLBEZSBKDVJ1SAWHWD
-
-// Use fetch.
 const apiKey = 'DX3A3OBAMQVOA3O4FCT5HI25FNKZ2C1FVE3SKQOVDEUR5W05';
 const apiSecret = '0X34REUZCI4ICN24NUET4BF2YEACJXZLBEZSBKDVJ1SAWHWD';
-let result = '';
+let result = [];
 
 fetch('https://api.foursquare.com/v2/venues/search?ll=34.178,-118.612&client_id=' + apiKey +'&client_secret='+ apiSecret +'&v=20180115', {
     method: 'GET',
@@ -59,8 +57,11 @@ fetch('https://api.foursquare.com/v2/venues/search?ll=34.178,-118.612&client_id=
     throw new Error('Network response is not ok. Error: ' + response.status);
 }).catch(function(error) {
     console.log('There was a problem with the fetch response: ' + error.message);
-}).then(function(result){
-    // do something else with response data
-});
+}).then(pushInfo);
 
-// Create filter functions
+function pushInfo(data){
+    // test using some data
+    document.getElementById("fourSquare").innerHTML = data.response.venues[0].id;
+};
+
+// TODO: Create filter functions
