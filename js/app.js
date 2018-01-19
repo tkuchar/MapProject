@@ -18,17 +18,20 @@ function initMap() {
     basicInfowindow = new google.maps.InfoWindow();
     // Initialize Markers.
     addMarkers();
+    // Apply ko bindings.
+    ko.applyBindings(new viewModel());
 };
 
-let viewModel = function () {
+function viewModel() {
     "use strict";
     let self = this;
 
     let Place = function(i) {
         this.title = places[i].title;
         this.location = places[i].locatin;
-        // TODO: Add Foursquare info.
+        // TODO: Add Foursquare and ther info.
      };
+
     // TODO: Use knockout.js to access model and then data-bind to view.
     self.placeList = ko.observableArray();
 
@@ -37,5 +40,3 @@ let viewModel = function () {
         self.placeList.push(new Place(i));
     }
 };
-// Apply ko bindings.
-ko.applyBindings(new viewModel());
