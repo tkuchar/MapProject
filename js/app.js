@@ -28,15 +28,17 @@ function viewModel() {
 
     let Place = function(i) {
         this.title = places[i].title;
-        this.location = places[i].locatin;
+        this.location = places[i].location;
+        this.keywords = places[i].keywords;
         // TODO: Add Foursquare and ther info.
      };
 
     // TODO: Use knockout.js to access model and then data-bind to view.
     self.placeList = ko.observableArray();
-
+    self.keywordsList = ko.observableArray([
+        'American', 'East Asian', 'Happy Hour']);
     // Fill the placeList array.
-    for(let i = 0; i < places.length; i++) {
+    for(let i = 0; i < places.length; i++){
         self.placeList.push(new Place(i));
-    }
+    };
 };
