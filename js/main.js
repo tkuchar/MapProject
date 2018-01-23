@@ -41,7 +41,6 @@ function hideMenu() {
 // Client Secret: 0X34REUZCI4ICN24NUET4BF2YEACJXZLBEZSBKDVJ1SAWHWD
 const apiKey = 'DX3A3OBAMQVOA3O4FCT5HI25FNKZ2C1FVE3SKQOVDEUR5W05';
 const apiSecret = '0X34REUZCI4ICN24NUET4BF2YEACJXZLBEZSBKDVJ1SAWHWD';
-let result = [];
 // Holds Foursquare venue data.
 let venueArr = new Array();
 
@@ -52,21 +51,16 @@ function fetchData() {
             dataType: 'jsonp',
         }).then(function(response) {
             if (response.ok) {
-                result = response.json();
-                return result;
+                return response.json();
             }
             throw new Error('There was a problem with the Foursquare API response: Error ' + response.status + '.');
         }).catch(function(error) {
             document.getElementById("fourSquare").innerHTML = error.message;
-        }).then(pushVenueData);
+        }).then(function(data){
+            venueArr.push(data.response.venue);
+            document.getElementById('fourSquare').innerHTML = "Foursquare API Test: " + venueArr[0].name + ", " + venueArr[0].rating;
+        });
     };
-};
-
-function pushVenueData(data) {
-    venueArr.push(data.response.venue);
-    // Test
-    document.getElementById('fourSquare').innerHTML = "Foursquare API Test: " +
-    venueArr[1].name + ", " + venueArr[1].rating;
 };
 
 fetchData();
