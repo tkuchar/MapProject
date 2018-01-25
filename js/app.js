@@ -3,6 +3,7 @@
 // Global variables for app.
 let map, basicInfowindow;
 let markers = [];
+let venueArr = [];
 
 function initMap() {
     // Initialize map.
@@ -16,23 +17,30 @@ function initMap() {
     });
 
     basicInfowindow = new google.maps.InfoWindow();
+
     // Initialize Markers.
     addMarkers();
+
+    // Fetch Foursquare Data
+    fetchData();
     // Apply ko bindings.
-    ko.applyBindings(new viewModel());
+    vm = new viewModel();
+    ko.applyBindings(vm);
+};
+
+let Place = function(i) {
+    this.title = places[i].title;
+    this.location = places[i].location;
+    this.marker = places[i].marker;
+    this.keywords = places[i].keywords;
+    this.infowindow = basicInfowindow;
+    //this.rating = venueArr[i].rating;
+    // TODO: Add Foursquare and other info.
 };
 
 function viewModel() {
     "use strict";
     let self = this;
-
-    let Place = function(i) {
-        this.title = places[i].title;
-        this.location = places[i].location;
-        this.keywords = places[i].keywords;
-        // TODO: Add Foursquare and ther info.
-     };
-
     // TODO: Use knockout.js to access model and then data-bind to view.
     self.placeList = ko.observableArray();
     self.keywordsList = ko.observableArray([

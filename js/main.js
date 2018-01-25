@@ -31,6 +31,23 @@ function addMarkers() {
     };
 };
 
+document.addEventListener('DOMContentLoaded',function() {
+    document.querySelector('select[name="place-list"]').addEventListener("change", updateMarkers);
+    document.querySelector('select[name="keywords"]').addEventListener("change", updateMarkers);
+}, false);
+
+function updateMarkers() {
+    let list = vm.placeList();
+    for(let i = 0; i < list.length; i++) {
+        // I need to pass data into indexOf().
+        let found = (list[i].keywords.indexOf(event.target.value) > -1);
+        if (found)
+            console.log('Success');
+        else
+            console.log('Fail')
+    }
+};
+
 // Incomplete function for hiding menu.
 function hideMenu() {
     document.getElementById("options-container").setAttribute("class","hide-class");
@@ -38,15 +55,13 @@ function hideMenu() {
 
 // FOURSQUARE API
 // Client ID: DX3A3OBAMQVOA3O4FCT5HI25FNKZ2C1FVE3SKQOVDEUR5W05
-// Client Secret: 0X34REUZCI4ICN24NUET4BF2YEACJXZLBEZSBKDVJ1SAWHWD
+// Client Secret: 501HKFNFAMUIILHMN3SKKU1G0MN3TDZP1RI320VCO0VZ4WR3
 const apiKey = 'DX3A3OBAMQVOA3O4FCT5HI25FNKZ2C1FVE3SKQOVDEUR5W05';
-const apiSecret = '0X34REUZCI4ICN24NUET4BF2YEACJXZLBEZSBKDVJ1SAWHWD';
-// Holds Foursquare venue data.
-let venueArr = new Array();
+const apiSecret = '501HKFNFAMUIILHMN3SKKU1G0MN3TDZP1RI320VCO0VZ4WR3';
 
 function fetchData() {
     for (i = 0; i < places.length; i++) {
-        fetch('https://api.foursquare.com/v2/venues/' + places[i].venueID + '?&client_id=' + apiKey + '&client_secret=' + apiSecret + '&v=20180115', {
+        fetch('https://api.foursquare.com/v2/venues/' + places[i].venueID + '?&client_id=' + apiKey + '&client_secret=' + apiSecret + '&v=20180124', {
             method: 'GET',
             dataType: 'jsonp',
         }).then(function(response) {
@@ -54,18 +69,10 @@ function fetchData() {
                 return response.json();
             }
             throw new Error('There was a problem with the Foursquare API response: Error ' + response.status + '.');
-        }).catch(function(error) {
-            document.getElementById("fourSquare").innerHTML = error.message;
         }).then(function(data){
             venueArr.push(data.response.venue);
-            document.getElementById('fourSquare').innerHTML = "Foursquare API Test: " + venueArr[0].name + ", " + venueArr[0].rating;
+        }).catch(function(error) {
+            document.getElementById("fourSquare").innerHTML = "Foursquare API Error: " + error.message;
         });
     };
-};
-
-fetchData();
-
-// TODO: Create filter functions
-function filterTest(){
-    // do something
 };

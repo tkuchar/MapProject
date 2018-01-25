@@ -59,24 +59,24 @@
             <h5 class="filter-menu"> Filter Selections </h5>
             <!-- TODO: Use data-bind on view -->
             <!-- Fill menu with types to search by -->
-              <select data-bind="foreach:placeList">
-                <option data-bind="text:title"></option>
+              <select name="place-list" data-bind="foreach:placeList">
+                <option data-bind="value:title, text:title"></option>
               </select>
               <br>
               <h6 class="filter-menu"> By Type </h6>
-              <select data-bind="foreach:keywordsList">
-                <option data-bind="text:$data"></option>
+              <select name="keywords" data-bind="foreach:keywordsList">
+                <option data-bind="value:$data, text:$data"></option>
               </select>
             <!-- TODO: Create function to call filter when clicked. -->
-            <i id="filter-button" class="fa fa-filter" aria-hidden="true" data-bind="click: "></i>
+            <!-- <i id="filter-button" class="fa fa-filter" aria-hidden="true" data-bind="click: "></i> -->
           </div>
           <!-- Append Foursquare data? -->
           <div id="fourSquare"></div>
         </div>
     <div id="map"/>
     <script src="node_modules\knockout\build\output\knockout-latest.debug.js"></script>
+    <script src="js/main.js"></script>
     <script async defer src="js/app.js"></script>
-    <script async defer src="js/main.js"></script>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyD3_ycKU9g4CmZUTEa6VjEcZ7KL8i-x94E&v=3&callback=initMap">
     </script>
