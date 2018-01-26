@@ -16,12 +16,13 @@ function initMap() {
         zoom: 13,
     });
 
-    basicInfowindow = new google.maps.InfoWindow();
-
+    let contentString = "";
+    basicInfowindow = new google.maps.InfoWindow({
+        //content: contentString,
+    });
     // Initialize Markers.
     addMarkers();
-
-    // Fetch Foursquare Data
+    // Fetch Foursquare venue data.
     fetchData();
     // Apply ko bindings.
     vm = new viewModel();
@@ -31,7 +32,7 @@ function initMap() {
 let Place = function(i) {
     this.title = places[i].title;
     this.location = places[i].location;
-    this.marker = places[i].marker;
+    this.marker = markers[i];
     this.keywords = places[i].keywords;
     this.infowindow = basicInfowindow;
     //this.rating = venueArr[i].rating;
@@ -45,6 +46,7 @@ function viewModel() {
     self.placeList = ko.observableArray();
     self.keywordsList = ko.observableArray([
         'American', 'East Asian', 'Happy Hour']);
+    self.markers = ko.observableArray();
     // Fill the placeList array.
     for(let i = 0; i < places.length; i++){
         self.placeList.push(new Place(i));
