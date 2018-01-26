@@ -20,10 +20,10 @@ function initMap() {
     basicInfowindow = new google.maps.InfoWindow({
         //content: contentString,
     });
-    // Initialize Markers.
-    addMarkers();
     // Fetch Foursquare venue data.
     fetchData();
+    // Initialize Markers.
+    addMarkers();
     // Apply ko bindings.
     vm = new viewModel();
     ko.applyBindings(vm);
