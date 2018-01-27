@@ -10,7 +10,6 @@ let places = [
 ];
 
 function addMarkers() {
-
     for (let i = 0; i < places.length; i++) {
         var title = places[i].title;
         var position = places[i].location;
@@ -26,7 +25,7 @@ function addMarkers() {
         markers.push(marker);
 
         marker.addListener('click', function() {
-            basicInfowindow.setContent(places[i].title + "<br>" + "Foursquare Rating: " + venueArr[i].rating);
+            basicInfowindow.setContent("<p>" + places[i].title + "</p>" + "<br>" + "Foursquare Rating: " + venueArr[i].rating);
             basicInfowindow.open(map, marker);
         });
     };
@@ -73,12 +72,12 @@ function hideMenu() {
 // FOURSQUARE API
 // Client ID: 4GNQBEWBAOPYM0DFVT0YEKXLMM3IRJAQ2ZAKIDNKL0NRN2DS
 // Client Secret: 501HKFNFAMUIILHMN3SKKU1G0MN3TDZP1RI320VCO0VZ4WR3
-const apiKey = '4GNQBEWBAOPYM0DFVT0YEKXLMM3IRJAQ2ZAKIDNKL0NRN2DS';
-const apiSecret = '2W2A1PSSJIO5PMX0D3CXTYM3DY2M20AYLXPBYMZEHYLY0TMK';
+const apiKey = 'DCQOD4KGBXCXC2WIJHU0TFO4BKDIHXE1YENFAMM1OCUHNO0Q';
+const apiSecret = 'WFYXO1IHXL1APB3H3TEGUPYD24LU0C4Q42G14AUKO55JYMOX';
 
 function fetchData() {
     for (i = 0; i < places.length; i++) {
-        fetch('https://api.foursquare.com/v2/venues/' + places[i].venueID + '?&client_id=' + apiKey + '&client_secret=' + apiSecret + '&v=20180125', {
+        fetch('https://api.foursquare.com/v2/venues/' + places[i].venueID + '?&client_id=' + apiKey + '&client_secret=' + apiSecret + '&v=20180126', {
             method: 'GET',
             dataType: 'jsonp',
         }).then(function(response) {

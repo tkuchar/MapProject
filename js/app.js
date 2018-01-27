@@ -1,5 +1,4 @@
 /* Application JS which contains MVVM */
-
 // Global variables for app.
 let map, basicInfowindow;
 let markers = [];
@@ -20,7 +19,7 @@ function initMap() {
     basicInfowindow = new google.maps.InfoWindow({
         //content: contentString,
     });
-    // Fetch Foursquare venue data.
+    //Fetch Foursquare data.
     fetchData();
     // Initialize Markers.
     addMarkers();
