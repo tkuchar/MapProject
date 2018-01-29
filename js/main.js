@@ -72,8 +72,12 @@ function updateKeywordMarkers() {
 
 // Incomplete function for hiding menu.
 function hideMenu() {
-    document.getElementById("options-container").setAttribute("class","hide-class");
+    document.getElementById("options-container").style.display = "none";
 };
+
+function showMenu() {
+    document.getElementById("options-container").style.display = "block";
+}
 
 // FOURSQUARE API
 // Client ID: 4GNQBEWBAOPYM0DFVT0YEKXLMM3IRJAQ2ZAKIDNKL0NRN2DS
