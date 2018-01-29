@@ -1,8 +1,4 @@
 /* Application JS which contains MVVM */
-// Global variables for app.
-let map, basicInfowindow;
-let markers = [];
-let venueArr = [];
 
 function initMap() {
     // Initialize map.

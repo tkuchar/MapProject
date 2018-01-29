@@ -1,6 +1,9 @@
 <!DOCTYPE HTML>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Woodland Hills Restaurant Map</title>
     <style type="text/css">
         html,
         body {
@@ -13,13 +16,14 @@
           position: relative;
         }
         #options-container {
-          height: 400px;
-          width: 350px;
+          height: 55%;
+          width: 35%;
           text-align: left;
           padding: 10px;
           background-color: #80dfff;
           position: absolute;
           z-index: 1;
+          border: 2px solid white;
         }
         h3 {
           margin-top: 0;
@@ -80,7 +84,7 @@
     <div id="map"/>
     <script src="node_modules\knockout\build\output\knockout-latest.debug.js"></script>
     <script src="js/main.js"></script>
-    <script async defer src="js/app.js"></script>
+    <script src="js/app.js"></script>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyD3_ycKU9g4CmZUTEa6VjEcZ7KL8i-x94E&v=3&callback=initMap">
     </script>
