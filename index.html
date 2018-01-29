@@ -73,14 +73,13 @@
           margin-top: 55px;
         }
         .fa-foursquare {
-          color: red;
+          color: #ed3b3b;
         }
         p {
           font-weight: bold;
           margin: 0 auto;
         }
     </style>
-    <script defer src="https://use.fontawesome.com/04b0f8d6a3.js"></script>
   </head>
   <body>
     <div id="site-container">
@@ -90,8 +89,6 @@
           onclick="hideMenu()"></i></h3>
           <div>
             <h5 class="filter-menu"> By Name </h5>
-            <!-- TODO: Use data-bind on view -->
-            <!-- Fill menu with types to search by -->
               <select name="place-list" data-bind="foreach:placeList">
                 <option data-bind="value:title, text:title"/>
               </select>
@@ -104,7 +101,8 @@
           <div id="fourSquare">Unique Data Powered by Foursquare <i class="fa fa-foursquare fa-1x" aria-hidden="true"></i></div>
         </div>
     <div id="map"/>
-    <script src="node_modules\knockout\build\output\knockout-latest.debug.js"></script>
+    <script async defer src="https://use.fontawesome.com/04b0f8d6a3.js"></script>
+    <script async defer src="node_modules\knockout\build\output\knockout-latest.debug.js"></script>
     <script src="js/main.js"></script>
     <script src="js/app.js"></script>
     <script async defer

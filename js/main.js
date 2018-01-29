@@ -27,6 +27,7 @@ function addMarkers() {
         });
 
         marker.addListener('click', function() {
+            this.setAnimation(google.maps.Animation.BOUNCE);
             basicInfowindow.setContent("<p>" + places[i].title + "</p>" + "<br>" + "Foursquare Rating: " + venueArr[i].rating);
             basicInfowindow.open(map, marker);
         });
@@ -70,10 +71,9 @@ function updateKeywordMarkers() {
     };
 };
 
-// Incomplete function for hiding menu.
 function hideMenu() {
     document.getElementById("options-container").style.display = "none";
-};
+}
 
 function showMenu() {
     document.getElementById("options-container").style.display = "block";
