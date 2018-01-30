@@ -91,8 +91,6 @@ function showMenu() {
 }
 
 // FOURSQUARE API
-// Client ID: 4GNQBEWBAOPYM0DFVT0YEKXLMM3IRJAQ2ZAKIDNKL0NRN2DS
-// Client Secret: 501HKFNFAMUIILHMN3SKKU1G0MN3TDZP1RI320VCO0VZ4WR3
 const apiKey = 'DCQOD4KGBXCXC2WIJHU0TFO4BKDIHXE1YENFAMM1OCUHNO0Q';
 const apiSecret = 'WFYXO1IHXL1APB3H3TEGUPYD24LU0C4Q42G14AUKO55JYMOX';
 
@@ -107,7 +105,6 @@ function fetchData() {
             }
             throw new Error('There was a problem with the Foursquare API response: Error ' + response.status + '.');
         }).then(function(data){
-            // document.getElementById("fourSquare").innerHTML = data.response.venue.rating;
             return venueArr.push(data.response.venue);
         }).catch(function(error) {
             document.getElementById("fourSquare").innerHTML = "Foursquare API Error: " + error.message;

@@ -30,14 +30,11 @@ let Place = function(i) {
     this.marker = markers[i];
     this.keywords = places[i].keywords;
     this.infowindow = basicInfowindow;
-    //this.rating = venueArr[i].rating;
-    // TODO: Add Foursquare and other info.
 };
 
 function viewModel() {
     "use strict";
     let self = this;
-    // TODO: Use knockout.js to access model and then data-bind to view.
     self.placeList = ko.observableArray();
     self.keywordsList = ko.observableArray([
         'American', 'East Asian', 'Happy Hour']);
