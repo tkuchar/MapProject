@@ -11,10 +11,7 @@ function initMap() {
         zoom: 13,
     });
 
-    let contentString = "";
-    basicInfowindow = new google.maps.InfoWindow({
-        //content: contentString,
-    });
+    basicInfowindow = new google.maps.InfoWindow;
     //Fetch Foursquare data.
     fetchData();
     // Initialize Markers.

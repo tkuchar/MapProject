@@ -1,116 +1,129 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Woodland Hills Restaurant Map</title>
     <style type="text/css">
         html,
         body {
-          height: 100%;
-          margin: 0;
-          padding: 0;
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
+
         #site-container {
-          height: 100%;
-          position: relative;
+            height: 100%;
+            position: relative;
         }
+
         #site-bar {
-          width: 100%;
-          font-size: 26px;
-          background-color: #80dfff;
-          text-align: center;
-          margin: 0 auto;
-          padding-top: 20px;
-          height: 55px;
-          border: 2px solid white;
-          position: absolute;
-          z-index: 1;
+            width: 100%;
+            font-size: 26px;
+            background-color: #80dfff;
+            text-align: center;
+            margin: 0 auto;
+            padding-top: 20px;
+            height: 55px;
+            border: 2px solid white;
+            position: absolute;
+            z-index: 1;
         }
+
         #options-container {
-          height: 350px;
-          width: 325px;
-          text-align: left;
-          padding: 10px;
-          background-color: #80dfff;
-          position: absolute;
-          z-index: 1;
-          border: 2px solid white;
-          display: none;
+            height: 350px;
+            width: 325px;
+            text-align: left;
+            padding: 10px;
+            background-color: #80dfff;
+            position: absolute;
+            z-index: 1;
+            border: 2px solid white;
+            display: none;
         }
+
         h3 {
-          margin-top: 0;
-          padding-top: 10px;
+            margin-top: 0;
+            padding-top: 10px;
         }
+
         #option-menu {
-          width: 85%;
+            width: 85%;
         }
+
         .fa-filter {
-          color: green;
-          padding-left: 5px;
+            color: green;
+            padding-left: 5px;
         }
+
         #map {
-          bottom:0px;
-          height: 100%;
-          width: 100%;
-          right: 0px;
-          position: relative;
+            bottom: 0px;
+            height: 100%;
+            width: 100%;
+            right: 0px;
+            position: relative;
         }
+
         .show-menu-bars {
-          float:left;
-          padding-top: 4px;
-          padding-left: 20px;
+            float: left;
+            padding-top: 4px;
+            padding-left: 20px;
         }
+
         .hide-menu {
-          float:right;
-          color: red;
-          padding-right: 15px;
+            float: right;
+            color: red;
+            padding-right: 15px;
         }
+
         .filter-menu {
-          margin-bottom: 10px;
+            margin-bottom: 10px;
         }
+
         #fourSquare {
-          margin-top: 55px;
+            margin-top: 55px;
         }
+
         .fa-foursquare {
-          color: #ed3b3b;
+            color: #ed3b3b;
         }
+
         p {
-          font-weight: bold;
-          margin: 0 auto;
+            font-weight: bold;
+            margin: 0 auto;
         }
+
         button {
-          background-color: white;
+            background-color: white;
         }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="site-container">
-      <div id="site-bar"> <i class="fa fa-bars show-menu-bars" onclick="showMenu()"></i> Woodland Hills Restaurants </div>
-      <div id="options-container">
-        <h3> Find a Restaurant <i class="fa fa-times-circle hide-menu" aria-hidden="true"
-          onclick="hideMenu()"></i></h3>
-        <button id="show-all" data-bind="place-list" onclick="showAll()">Show All</button>
-          <div>
-            <h5 class="filter-menu"> By Name </h5>
-              <select name="place-list" data-bind="foreach:placeList">
+        <div id="site-bar"> <i class="fa fa-bars show-menu-bars" onclick="showMenu()"></i> Woodland Hills Restaurants </div>
+        <div id="options-container">
+            <h3> Find a Restaurant <i class="fa fa-times-circle hide-menu" aria-hidden="true" onclick="hideMenu()"></i></h3>
+            <button id="show-all" data-bind="place-list" onclick="showAll()">Show All</button>
+            <div>
+                <h5 class="filter-menu"> By Name </h5>
+                <select name="place-list" data-bind="foreach:placeList">
                 <option data-bind="value:title, text:title"/>
               </select>
-              <br>
-              <h6 class="filter-menu"> By Type </h6>
-              <select name="keywords" data-bind="foreach:keywordsList">
+                <br>
+                <h6 class="filter-menu"> By Type </h6>
+                <select name="keywords" data-bind="foreach:keywordsList">
                 <option data-bind="value:$data, text:$data"/>
               </select>
-          </div>
-          <div id="fourSquare">Unique Data Powered by Foursquare <i class="fa fa-foursquare fa-1x" aria-hidden="true"></i></div>
+            </div>
+            <div id="fourSquare">Unique Data Powered by Foursquare <i class="fa fa-foursquare fa-1x" aria-hidden="true"></i></div>
         </div>
-    <div id="map"/>
-    <script async defer src="https://use.fontawesome.com/04b0f8d6a3.js"></script>
-    <script async defer src="node_modules\knockout\build\output\knockout-latest.debug.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/app.js"></script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyD3_ycKU9g4CmZUTEa6VjEcZ7KL8i-x94E&v=3&callback=initMap">
-    </script>
-  </body>
-</html>
+        <div id="map" />
+        <script src="https://use.fontawesome.com/04b0f8d6a3.js"></script>
+        <script src="node_modules\knockout\build\output\knockout-latest.debug.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/app.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyD3_ycKU9g4CmZUTEa6VjEcZ7KL8i-x94E&v=3&callback=initMap">
+        </script>
+</body>

@@ -1,20 +1,17 @@
 # Neighborhood Map Project
 
-## Table of Contents
+### Requirements
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+You will require an internet connection to run this application locally because it uses a `fetch` request to get data asynchronously from the Foursquare API.
 
-## Instructions
+### Opening the Application
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+The file to start the application is `index.html`. Open this file to launch the application.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Using the Application
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+Once the application is loaded, you are able to see all the initial locations.
 
-## Contributing
+Clicking on a location on the `map` will display the location's name and the corresponding Foursquare rating.
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Click on the hamburger menu icon located in the top left of the title bar on the page to open up the options menu which will enable you to filter the locations by name and type. To close this menu click on the red `X` icon located in the top right corner of the options menu.

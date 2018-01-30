@@ -42,10 +42,10 @@ function addMarkers() {
 function showAll(){
     let list = vm.placeList();
 
-    for(let i = 0; i < list.length; i++) {
-        list[i].marker.setAnimation(google.maps.Animation.DROP);
-        list[i].marker.setMap(map);
-    };
+    list.forEach(function(element){
+        element.marker.setAnimation(google.maps.Animation.DROP);
+        element.marker.setMap(map);
+    });
 };
 
 document.addEventListener('DOMContentLoaded',function() {
@@ -57,29 +57,30 @@ function updateTitleMarkers() {
 
     let list = vm.placeList();
 
-    for(let i = 0; i < list.length; i++) {
-        let found = (list[i].title.indexOf(event.target.value) > -1);
+    list.forEach(function(element){
+        let found = (element.title.indexOf(event.target.value) > -1);
         if (found) {
-            list[i].marker.setAnimation(google.maps.Animation.DROP);
-            list[i].marker.setMap(map);
+            element.marker.setAnimation(google.maps.Animation.DROP);
+            element.marker.setMap(map);
         }
         else
-            list[i].marker.setMap(null);
-    };
+            element.marker.setMap(null);
+    });
 };
 
 function updateKeywordMarkers() {
 
     let list = vm.placeList();
-    for(let i = 0; i < list.length; i++) {
-        let found = (list[i].keywords.indexOf(event.target.value) > -1);
+
+    list.forEach(function(element){
+        let found = (element.keywords.indexOf(event.target.value) > -1);
         if (found) {
-            list[i].marker.setAnimation(google.maps.Animation.DROP);
-            list[i].marker.setMap(map);
+            element.marker.setAnimation(google.maps.Animation.DROP);
+            element.marker.setMap(map);
         }
         else
-            list[i].marker.setMap(null);
-    };
+            element.marker.setMap(null);
+    });
 };
 
 function hideMenu() {
