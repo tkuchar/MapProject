@@ -30,9 +30,21 @@ function addMarkers() {
             this.setAnimation(google.maps.Animation.BOUNCE);
             basicInfowindow.setContent("<p>" + places[i].title + "</p>" + "<br>" + "Foursquare Rating: " + venueArr[i].rating);
             basicInfowindow.open(map, marker);
+            setTimeout(function(){
+                marker.setAnimation(null);
+            }, 2500);
         });
 
         markers.push(marker);
+    };
+};
+
+function showAll(){
+    let list = vm.placeList();
+
+    for(let i = 0; i < list.length; i++) {
+        list[i].marker.setAnimation(google.maps.Animation.DROP);
+        list[i].marker.setMap(map);
     };
 };
 
@@ -59,7 +71,6 @@ function updateTitleMarkers() {
 function updateKeywordMarkers() {
 
     let list = vm.placeList();
-
     for(let i = 0; i < list.length; i++) {
         let found = (list[i].keywords.indexOf(event.target.value) > -1);
         if (found) {
