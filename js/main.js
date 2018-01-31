@@ -1,4 +1,3 @@
-/* Main Javascript File */
 // Location data for app.
 let places = [
     {title: 'Anantra Thai Restaurant', location: {lat: 34.169685, lng: -118.602510},  venueID: '56dbc184498e9f168e8e9fb9', keywords: ['East Asian']},
@@ -36,8 +35,8 @@ function addMarkers() {
         });
 
         markers.push(marker);
-    };
-};
+    }
+}
 
 function showAll(){
     let list = vm.placeList();
@@ -46,7 +45,7 @@ function showAll(){
         element.marker.setAnimation(google.maps.Animation.DROP);
         element.marker.setMap(map);
     });
-};
+}
 
 document.addEventListener('DOMContentLoaded',function() {
     document.querySelector('select[name="place-list"]').addEventListener("change", updateTitleMarkers);
@@ -66,7 +65,7 @@ function updateTitleMarkers() {
         else
             element.marker.setMap(null);
     });
-};
+}
 
 function updateKeywordMarkers() {
 
@@ -81,7 +80,7 @@ function updateKeywordMarkers() {
         else
             element.marker.setMap(null);
     });
-};
+}
 
 function hideMenu() {
     document.getElementById("options-container").style.display = "none";
@@ -111,4 +110,4 @@ function fetchData() {
             document.getElementById("fourSquare").innerHTML = "Foursquare API Error: " + error.message;
         });
     });
-};
+}

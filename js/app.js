@@ -5,13 +5,13 @@ function initMap() {
     let WoodlandHills = {
         lat: 34.172846,
         lng: -118.612701
-    }
+    };
     map = new google.maps.Map(document.getElementById("map"), {
         center: WoodlandHills,
         zoom: 13,
     });
 
-    basicInfowindow = new google.maps.InfoWindow;
+    basicInfowindow = new google.maps.InfoWindow();
     //Fetch Foursquare data.
     fetchData();
     // Initialize Markers.
@@ -19,7 +19,7 @@ function initMap() {
     // Apply ko bindings.
     vm = new viewModel();
     ko.applyBindings(vm);
-};
+}
 
 let Place = function(i) {
     this.title = places[i].title;
@@ -30,7 +30,6 @@ let Place = function(i) {
 };
 
 function viewModel() {
-    "use strict";
     let self = this;
     self.placeList = ko.observableArray();
     self.keywordsList = ko.observableArray([
@@ -39,5 +38,5 @@ function viewModel() {
     // Fill the placeList array.
     for(let i = 0; i < places.length; i++){
         self.placeList.push(new Place(i));
-    };
-};
+    }
+}
