@@ -31,7 +31,7 @@ function addMarkers() {
             basicInfowindow.open(map, marker);
             setTimeout(function(){
                 marker.setAnimation(null);
-            }, 2500);
+            }, 2100);
         });
 
         markers.push(marker);
@@ -47,33 +47,35 @@ function showAll(){
     });
 }
 
+/* Advised against this approach.
 document.addEventListener('DOMContentLoaded',function() {
     document.querySelector('select[name="place-list"]').addEventListener("change", updateTitleMarkers);
     document.querySelector('select[name="keywords"]').addEventListener("change", updateKeywordMarkers);
-}, false);
+}, false); */
 
 function updateTitleMarkers() {
 
     let list = vm.placeList();
+    let place = vm.selectedPlace()[0].title;
 
     list.forEach(function(element){
-        let found = (element.title.indexOf(event.target.value) > -1);
+        let found = (element.title.indexOf(place) > -1);
         if (found) {
             element.marker.setAnimation(google.maps.Animation.DROP);
             element.marker.setMap(map);
         }
-        else
-            element.marker.setMap(null);
     });
 }
 
 function updateKeywordMarkers() {
 
     let list = vm.placeList();
+    let filter = vm.selectedFilter();
 
     list.forEach(function(element){
-        let found = (element.keywords.indexOf(event.target.value) > -1);
+        let found = (element.keywords.indexOf(filter) > -1);
         if (found) {
+            console.log('Success');
             element.marker.setAnimation(google.maps.Animation.DROP);
             element.marker.setMap(map);
         }

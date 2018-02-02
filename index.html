@@ -15,15 +15,19 @@
             <h3> Find a Restaurant <i class="fa fa-times-circle hide-menu" aria-hidden="true" onclick="hideMenu()"></i></h3>
             <button id="show-all" data-bind="place-list" onclick="showAll()">Show All</button>
             <div>
-                <h5 class="filter-menu"> By Name </h5>
+                <h5 class="filter-menu"> Location List </h5>
+                <select data-bind="options: placeList, optionsText: 'title', optionsCaption: 'Select a location...', selectedOptions: selectedPlace, event: { change: updateTitleMarkers }">
+                </select>
+
+              <!-- Old code
                 <select name="place-list" data-bind="foreach:placeList">
-                <option data-bind="value:title, text:title"/>
-              </select>
+                  <option data-bind="value:title, text:title"/>
+                </select> -->
                 <br>
+
                 <h6 class="filter-menu"> By Type </h6>
-                <select name="keywords" data-bind="foreach:keywordsList">
-                <option data-bind="value:$data, text:$data"/>
-              </select>
+                <select data-bind="options: keywordsList, optionsText: $data, optionsCaption: 'Select a filter...', selectedOptions: selectedFilter, event { change: updateKeywordMarkers }">
+                </select>
             </div>
             <div id="fourSquare">Unique Data Powered by Foursquare <i class="fa fa-foursquare fa-1x" aria-hidden="true"></i></div>
         </div>

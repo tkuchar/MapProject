@@ -39,4 +39,7 @@ function viewModel() {
     for(let i = 0; i < places.length; i++){
         self.placeList.push(new Place(i));
     }
+    self.selectedPlace = ko.observable();
+    self.selectedFilter = ko.observable();
+
 }
