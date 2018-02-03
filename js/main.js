@@ -38,28 +38,12 @@ function addMarkers() {
     }
 }
 
-function showAll(){
-    let list = vm.placeList();
-
-    list.forEach(function(element){
-        element.marker.setAnimation(google.maps.Animation.DROP);
-        element.marker.setMap(map);
-    });
-}
-
-/* Advised against this approach.
-document.addEventListener('DOMContentLoaded',function() {
-    document.querySelector('select[name="place-list"]').addEventListener("change", updateTitleMarkers);
-    document.querySelector('select[name="keywords"]').addEventListener("change", updateKeywordMarkers);
-}, false); */
-
 function updateTitleMarkers() {
 
     let list = vm.placeList();
-    let place = vm.selectedPlace()[0].title;
 
     list.forEach(function(element){
-        let found = (element.title.indexOf(place) > -1);
+        let found = (element.title.indexOf(event.target.innerHTML) > -1);
         if (found) {
             element.marker.setAnimation(google.maps.Animation.DROP);
             element.marker.setMap(map);
@@ -70,17 +54,21 @@ function updateTitleMarkers() {
 function updateKeywordMarkers() {
 
     let list = vm.placeList();
-    let filter = vm.selectedFilter();
+    let filter = vm.selectedFilter()[0];
 
     list.forEach(function(element){
         let found = (element.keywords.indexOf(filter) > -1);
         if (found) {
-            console.log('Success');
             element.marker.setAnimation(google.maps.Animation.DROP);
             element.marker.setMap(map);
         }
         else
             element.marker.setMap(null);
+
+        if (event.target.value === "") {
+            element.marker.setAnimation(google.maps.Animation.DROP);
+            element.marker.setMap(map);
+        }
     });
 }
 
