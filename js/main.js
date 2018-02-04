@@ -54,7 +54,7 @@ function updateTitleMarkers() {
 function updateKeywordMarkers() {
 
     let list = vm.placeList();
-    let filter = vm.selectedFilter()[0];
+    let filter = vm.selectedFilter();
 
     list.forEach(function(element){
         let found = (element.keywords.indexOf(filter) > -1);

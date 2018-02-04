@@ -31,7 +31,7 @@ let Place = function(i) {
 
 function viewModel() {
     let self = this;
-    self.placeList = ko.observableArray();
+    self.placeList = ko.observableArray([]);
     self.keywordsList = ko.observableArray([
         'American', 'East Asian', 'Happy Hour']);
     self.markers = ko.observableArray();
@@ -46,7 +46,8 @@ function viewModel() {
             return self.placeList();
         } else {
             return ko.utils.arrayFilter(self.placeList(), function(place) {
-                return (place === self.selectedFilter() );
+                //console.log(place.keywords);
+                return(place.keywords[0] === self.selectedFilter());
             });
         }
     });
