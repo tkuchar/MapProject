@@ -4,34 +4,35 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Woodland Hills Restaurant Map</title>
+    <title> WOODLAND HILLS RESTAURANTS </title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
     <div id="site-container">
-        <div id="site-bar"> <i class="fa fa-bars show-menu-bars" onclick="showMenu()"></i> Woodland Hills Restaurants </div>
+        <div id="site-bar"> <i class="fa fa-bars show-menu-bars" onclick="showMenu()"></i> WOODLAND HILLS RESTAURANTS </div>
         <div id="options-container">
-            <h3> Find a Restaurant <i class="fa fa-times-circle hide-menu" aria-hidden="true" onclick="hideMenu()"></i></h3>
+            <h2> Find a Restaurant <i class="fa fa-times-circle hide-menu" aria-hidden="true" onclick="hideMenu()"></i></h3>
             <div>
-                <h5 class="filter-menu"> Location List </h5>
-                  <ul data-bind="foreach: placeList">
+                <h3 class="filter-menu"> Location List </h5>
+                  <ul data-bind="foreach: filterList">
                     <li class="list-item" data-bind="text: $data.title, click: updateTitleMarkers"/>
                   </ul>
 
                 <br>
 
-                <h6 class="filter-menu"> By Type </h6>
-                <select data-bind="options: keywordsList, optionsText: $data, optionsCaption: 'Select a filter...', selectedOptions: selectedFilter, event: { change: updateKeywordMarkers }">
+                <h4 class="filter-menu"> By Type </h6>
+                <select data-bind="options: keywordsList, optionsText: $data, optionsCaption: 'Select a filter...', value: selectedFilter, event: { change: updateKeywordMarkers }">
                 </select>
             </div>
             <div id="fourSquare">Unique Data Powered by Foursquare <i class="fa fa-foursquare fa-1x" aria-hidden="true"></i></div>
         </div>
+        <div id="error-div"></div>
         <div id="map" />
         <script src="https://use.fontawesome.com/04b0f8d6a3.js"></script>
         <script src="node_modules\knockout\build\output\knockout-latest.debug.js"></script>
         <script src="js/main.js"></script>
         <script src="js/app.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyD3_ycKU9g4CmZUTEa6VjEcZ7KL8i-x94E&v=3&callback=initMap">
+        <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyD3_ycKU9g4CmZUTEa6VjEcZ7KL8i-x94E&v=3&callback=initMap" async defer onerror="mapError()">
         </script>
 </body>

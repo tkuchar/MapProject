@@ -101,3 +101,7 @@ function fetchData() {
         });
     });
 }
+
+function mapError() {
+   document.getElementById("error-div").innerHTML = "There was an error loading the Google Maps API. Please try again later.";
+}

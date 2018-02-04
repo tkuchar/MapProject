@@ -13,7 +13,7 @@ function initMap() {
 
     basicInfowindow = new google.maps.InfoWindow();
     //Fetch Foursquare data.
-    fetchData();
+    //fetchData();
     // Initialize Markers.
     addMarkers();
     // Apply ko bindings.
@@ -40,4 +40,14 @@ function viewModel() {
         self.placeList.push(new Place(i));
     }
     self.selectedFilter = ko.observable();
+    // Filter function
+    self.filterList = ko.computed(function() {
+        if (!self.selectedFilter()) {
+            return self.placeList();
+        } else {
+            return ko.utils.arrayFilter(self.placeList(), function(place) {
+                return (place === self.selectedFilter() );
+            });
+        }
+    });
 }

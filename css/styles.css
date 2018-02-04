@@ -12,6 +12,7 @@ html, body {
  #site-bar {
      width: 100%;
      font-size: 26px;
+     letter-spacing: 1px;
      background-color: #b3e0ff;
      text-align: center;
      margin: 0 auto;
@@ -62,12 +63,18 @@ h3 {
      padding-left: 20px;
      cursor: pointer;
 }
+.show-menu-bars:hover {
+     color: white;
+}
 
  .hide-menu {
      float: right;
      color: #f76258;
      padding-right: 15px;
      cursor: pointer;
+}
+.hide-menu:hover {
+     color: white;
 }
 
  .filter-menu {
@@ -106,4 +113,12 @@ ul {
 .list-item:hover {
      background-color: white;
      cursor: pointer;
+}
+#error-div {
+    position: relative;
+    z-index: 1;
+    top: 110px;
+    text-align: center;
+    color: red;
+    font-size: 25px;
 }
