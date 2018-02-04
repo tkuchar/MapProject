@@ -27,7 +27,7 @@ function addMarkers() {
 
         marker.addListener('click', function() {
             this.setAnimation(google.maps.Animation.BOUNCE);
-            basicInfowindow.setContent("<p>" + places[i].title + "</p>" + "<br>" + "Foursquare Rating: " + venueArr[i].rating);
+            basicInfowindow.setContent("<p>" + places[i].title + "</p>" + "<br>" + "<i class='fa fa-foursquare fa-1x' aria-hidden='true'></i>" + "  Foursquare Rating: " + venueArr[i].rating);
             basicInfowindow.open(map, marker);
             setTimeout(function(){
                 marker.setAnimation(null);
