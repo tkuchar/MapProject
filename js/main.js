@@ -47,7 +47,6 @@ function updateTitleMarkers() {
         if (found) {
             element.marker.setVisible(true);
             element.marker.setAnimation(google.maps.Animation.DROP);
-            element.infowindow.setContent("<p>" + element.title + "</p>" + "<br>" + "<i class='fa fa-foursquare fa-1x' aria-hidden='true'></i>" + "  Foursquare Rating: ");
             element.infowindow.open(map, element.marker);
         }
     });

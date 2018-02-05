@@ -9,8 +9,9 @@ function initMap() {
         center: WoodlandHills,
         zoom: 13,
     });
-
-    basicInfowindow = new google.maps.InfoWindow();
+    basicInfowindow = new google.maps.InfoWindow({
+        // setcontent: contentString
+    });
     //Fetch Foursquare data.
     fetchData();
     // Initialize Markers.
