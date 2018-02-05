@@ -16,7 +16,7 @@
             <div>
                 <h3 class="filter-menu"> Location List </h5>
                   <ul data-bind="foreach: filterList">
-                    <li class="list-item" data-bind="text: $data.title, click: updateTitleMarkers"/>
+                    <li class="list-item" data-bind="text: $data.title, click: $root.updateTitleMarkers"/>
                   </ul>
 
                 <br>

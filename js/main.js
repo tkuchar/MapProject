@@ -38,20 +38,6 @@ function addMarkers() {
     }
 }
 
-function updateTitleMarkers() {
-
-    let list = vm.placeList();
-
-    list.forEach(function(element){
-        let found = (element.title.indexOf(event.target.innerHTML) > -1);
-        if (found) {
-            element.marker.setVisible(true);
-            element.marker.setAnimation(google.maps.Animation.DROP);
-            element.infowindow.open(map, element.marker);
-        }
-    });
-}
-
 function updateKeywordMarkers() {
     let list = vm.placeList();
     let filter = vm.selectedFilter();

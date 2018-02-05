@@ -13,7 +13,7 @@ function initMap() {
         // setcontent: contentString
     });
     //Fetch Foursquare data.
-    fetchData();
+    // fetchData();
     // Initialize Markers.
     addMarkers();
     // Apply ko bindings.
@@ -41,6 +41,7 @@ function viewModel() {
     for(let i = 0; i < places.length; i++){
         self.placeList.push(new Place(i));
     }
+
     self.selectedFilter = ko.observable();
     // Filter function
     self.filterList = ko.computed(function() {
@@ -52,4 +53,14 @@ function viewModel() {
             });
         }
     });
+
+    self.updateTitleMarkers = function(listItem) {
+        console.log(listItem);
+        if(self.placeList().indexOf(listItem)) {
+            console.log("Success");
+            listItem.marker.setVisible(true);
+            listItem.marker.setAnimation(google.maps.Animation.DROP);
+            listItem.infowindow.open(map, listItem.marker);
+        }
+    }
 }
