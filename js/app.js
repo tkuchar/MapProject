@@ -1,5 +1,4 @@
 /* Application JS which contains MVVM */
-
 function initMap() {
     // Initialize map.
     let WoodlandHills = {
@@ -27,6 +26,8 @@ let Place = function(i) {
     this.marker = markers[i];
     this.keywords = places[i].keywords;
     this.infowindow = basicInfowindow;
+    //The below does not work for some reason.
+    //this.rating = venueArr[i].rating;
 };
 
 function viewModel() {

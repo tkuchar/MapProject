@@ -45,29 +45,32 @@ function updateTitleMarkers() {
     list.forEach(function(element){
         let found = (element.title.indexOf(event.target.innerHTML) > -1);
         if (found) {
+            element.marker.setVisible(true);
             element.marker.setAnimation(google.maps.Animation.DROP);
-            element.marker.setMap(map);
+            element.infowindow.setContent("<p>" + element.title + "</p>" + "<br>" + "<i class='fa fa-foursquare fa-1x' aria-hidden='true'></i>" + "  Foursquare Rating: ");
+            element.infowindow.open(map, element.marker);
         }
     });
 }
 
 function updateKeywordMarkers() {
-
     let list = vm.placeList();
     let filter = vm.selectedFilter();
 
     list.forEach(function(element){
+        // Clear previously opened infowindows
+        element.infowindow.close();
         let found = (element.keywords.indexOf(filter) > -1);
         if (found) {
+            element.marker.setVisible(true)
             element.marker.setAnimation(google.maps.Animation.DROP);
-            element.marker.setMap(map);
         }
         else
-            element.marker.setMap(null);
+            element.marker.setVisible(false)
 
         if (event.target.value === "") {
+            element.marker.setVisible(true)
             element.marker.setAnimation(google.maps.Animation.DROP);
-            element.marker.setMap(map);
         }
     });
 }
