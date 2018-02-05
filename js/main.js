@@ -9,7 +9,6 @@ let places = [
 
 let map, basicInfowindow;
 let markers = [];
-let venueArr = [];
 
 function addMarkers() {
 
@@ -27,7 +26,7 @@ function addMarkers() {
 
         marker.addListener('click', function() {
             this.setAnimation(google.maps.Animation.BOUNCE);
-            basicInfowindow.setContent("<p>" + places[i].title + "</p>" + "<br>" + "<i class='fa fa-foursquare fa-1x' aria-hidden='true'></i>" + "  Foursquare Rating: " + venueArr[i].rating);
+            basicInfowindow.setContent("<p>" + places[i].title + "</p>" + "<br>" + "<i class='fa fa-foursquare fa-1x' aria-hidden='true'></i>" + "  Foursquare Rating: " + );
             basicInfowindow.open(map, marker);
             setTimeout(function(){
                 marker.setAnimation(null);
@@ -73,7 +72,6 @@ const apiKey = 'DCQOD4KGBXCXC2WIJHU0TFO4BKDIHXE1YENFAMM1OCUHNO0Q';
 const apiSecret = 'WFYXO1IHXL1APB3H3TEGUPYD24LU0C4Q42G14AUKO55JYMOX';
 
 function fetchData() {
-    places.forEach(function(element) {
         fetch('https://api.foursquare.com/v2/venues/' + element.venueID + '?&client_id=' + apiKey + '&client_secret=' + apiSecret + '&v=20180126', {
             method: 'GET',
             dataType: 'jsonp',
@@ -83,11 +81,10 @@ function fetchData() {
             }
             throw new Error('There was a problem with the Foursquare API response: Error ' + response.status + '.');
         }).then(function(data){
-            return venueArr.push(data.response.venue);
+            return
         }).catch(function(error) {
             document.getElementById("fourSquare").innerHTML = "Foursquare API Error: " + error.message;
         });
-    });
 }
 
 function mapError() {

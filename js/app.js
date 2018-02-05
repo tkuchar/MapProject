@@ -12,8 +12,6 @@ function initMap() {
     basicInfowindow = new google.maps.InfoWindow({
         // setcontent: contentString
     });
-    //Fetch Foursquare data.
-    // fetchData();
     // Initialize Markers.
     addMarkers();
     // Apply ko bindings.
@@ -28,7 +26,7 @@ let Place = function(i) {
     this.keywords = places[i].keywords;
     this.infowindow = basicInfowindow;
     //The below does not work for some reason.
-    //this.rating = venueArr[i].rating;
+    this.rating = venueArr[i];
 };
 
 function viewModel() {
@@ -36,12 +34,11 @@ function viewModel() {
     self.placeList = ko.observableArray([]);
     self.keywordsList = ko.observableArray([
         'American', 'East Asian', 'Happy Hour']);
-    self.markers = ko.observableArray();
+    self.markers = ko.observableArray([]);
     // Fill the placeList array.
     for(let i = 0; i < places.length; i++){
         self.placeList.push(new Place(i));
     }
-
     self.selectedFilter = ko.observable();
     // Filter function
     self.filterList = ko.computed(function() {
@@ -55,12 +52,12 @@ function viewModel() {
     });
 
     self.updateTitleMarkers = function(listItem) {
-        console.log(listItem);
-        if(self.placeList().indexOf(listItem)) {
-            console.log("Success");
-            listItem.marker.setVisible(true);
-            listItem.marker.setAnimation(google.maps.Animation.DROP);
-            listItem.infowindow.open(map, listItem.marker);
-        }
+        self.placeList().indexOf(listItem);
+        listItem.marker.setVisible(true);
+        listItem.marker.setAnimation(google.maps.Animation.DROP);
+        self.placeList().forEach(function(element) {
+            listItem.infowindow.setContent("<p>" + element.title + "</p>" + "<br>" + "<i class='fa fa-foursquare fa-1x' aria-hidden='true'></i>" + "  Foursquare Rating: " + element.rating);
+        });
+        listItem.infowindow.open(map, listItem.marker);
     }
 }
