@@ -1,4 +1,5 @@
 /* Application JS which contains MVVM */
+
 function initMap() {
     // Initialize map.
     let WoodlandHills = {
@@ -12,29 +13,56 @@ function initMap() {
     basicInfowindow = new google.maps.InfoWindow({
         // setcontent: contentString
     });
-    // Initialize Markers.
-    addMarkers();
-    // Apply ko bindings.
+
     vm = new viewModel();
     ko.applyBindings(vm);
 }
 
 let Place = function(i) {
+
+    const self = this;
+
     this.title = places[i].title;
     this.location = places[i].location;
-    this.marker = markers[i];
     this.keywords = places[i].keywords;
-    this.infowindow = basicInfowindow;
-    //The below does not work for some reason.
-    this.rating = venueArr[i];
+    this.venueID = places[i].venueID;
+
+    // Create marker
+    self.marker = new google.maps.Marker({
+        position: places[i].position,
+        map: map,
+        title: places[i].title,
+        animation: google.maps.Animation.DROP,
+        });
+
+    self.content = '<p' + self.title + '<p>' + '<br>' + "<i class='fa fa-foursquare fa-1x' aria-hidden='true'></i>" + '  Foursquare Rating: Unavailable';
+
+    self.marker.addListener('click', function() {
+
+        const marker = this;
+
+        this.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout(function(){
+            marker.setAnimation(null);
+            }, 2100);
+
+        basicInfowindow.setContent(self.content);
+        basicInfowindow.open(map, marker);
+
+    fetchData(self);
+
+    })
+
+    self.marker.setMap(map);
 };
 
 function viewModel() {
+
     let self = this;
+
     self.placeList = ko.observableArray([]);
     self.keywordsList = ko.observableArray([
         'American', 'East Asian', 'Happy Hour']);
-    self.markers = ko.observableArray([]);
     // Fill the placeList array.
     for(let i = 0; i < places.length; i++){
         self.placeList.push(new Place(i));
@@ -55,9 +83,6 @@ function viewModel() {
         self.placeList().indexOf(listItem);
         listItem.marker.setVisible(true);
         listItem.marker.setAnimation(google.maps.Animation.DROP);
-        self.placeList().forEach(function(element) {
-            listItem.infowindow.setContent("<p>" + element.title + "</p>" + "<br>" + "<i class='fa fa-foursquare fa-1x' aria-hidden='true'></i>" + "  Foursquare Rating: " + element.rating);
-        });
         listItem.infowindow.open(map, listItem.marker);
     }
 }

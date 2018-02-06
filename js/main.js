@@ -8,41 +8,13 @@ let places = [
 ];
 
 let map, basicInfowindow;
-let markers = [];
-
-function addMarkers() {
-
-    for (let i = 0; i < places.length; i++) {
-        var title = places[i].title;
-        var position = places[i].location;
-        // Initialize markers.
-        let marker = new google.maps.Marker({
-            position: position,
-            map: map,
-            title: title,
-            animation: google.maps.Animation.DROP,
-            id: i,
-        });
-
-        marker.addListener('click', function() {
-            this.setAnimation(google.maps.Animation.BOUNCE);
-            basicInfowindow.setContent("<p>" + places[i].title + "</p>" + "<br>" + "<i class='fa fa-foursquare fa-1x' aria-hidden='true'></i>" + "  Foursquare Rating: " + );
-            basicInfowindow.open(map, marker);
-            setTimeout(function(){
-                marker.setAnimation(null);
-            }, 2100);
-        });
-
-        markers.push(marker);
-    }
-}
 
 function updateKeywordMarkers() {
     let list = vm.placeList();
     let filter = vm.selectedFilter();
 
     list.forEach(function(element){
-        // Clear previously opened infowindows
+        // Close previously opened infowindows
         element.infowindow.close();
         let found = (element.keywords.indexOf(filter) > -1);
         if (found) {
@@ -71,17 +43,19 @@ function showMenu() {
 const apiKey = 'DCQOD4KGBXCXC2WIJHU0TFO4BKDIHXE1YENFAMM1OCUHNO0Q';
 const apiSecret = 'WFYXO1IHXL1APB3H3TEGUPYD24LU0C4Q42G14AUKO55JYMOX';
 
-function fetchData() {
-        fetch('https://api.foursquare.com/v2/venues/' + element.venueID + '?&client_id=' + apiKey + '&client_secret=' + apiSecret + '&v=20180126', {
+function fetchData(target) {
+        fetch('https://api.foursquare.com/v2/venues/' + target.venueID + '?&client_id=' + apiKey + '&client_secret=' + apiSecret + '&v=20180126', {
             method: 'GET',
             dataType: 'jsonp',
         }).then(function(response) {
             if (response.ok) {
+                console.log(response.ok);
                 return response.json();
             }
             throw new Error('There was a problem with the Foursquare API response: Error ' + response.status + '.');
         }).then(function(data){
-            return
+            console.log(data.reponse.venue.rating);
+            return target.content = data.response.venue.rating;
         }).catch(function(error) {
             document.getElementById("fourSquare").innerHTML = "Foursquare API Error: " + error.message;
         });
