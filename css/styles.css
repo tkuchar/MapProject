@@ -13,7 +13,6 @@ html, body {
      width: 100%;
      font-size: 26px;
      letter-spacing: 1px;
-     background-color: #b3e0ff;
      text-align: center;
      margin: 0 auto;
      padding-top: 20px;
@@ -21,18 +20,20 @@ html, body {
      position: absolute;
      z-index: 1;
      box-shadow: 5px 10px 8px #888888;
+     background-color: white;
 }
 
  #options-container {
      height: 100%;
      width: 325px;
+     left: -350px;
+     background-color: white;
      text-align: left;
      padding: 10px;
-     background-color: #b3e0ff;
      position: absolute;
      z-index: 1;
      box-shadow: 5px 10px 8px #888888;
-     display: none;
+     transition: left .5s ease;
 }
 
 h3 {
@@ -42,11 +43,6 @@ h3 {
 
  #option-menu {
      width: 85%;
-}
-
- .fa-filter {
-     color: green;
-     padding-left: 5px;
 }
 
  #map {
@@ -61,20 +57,22 @@ h3 {
      float: left;
      padding-top: 4px;
      padding-left: 20px;
+     color: black;
      cursor: pointer;
 }
 .show-menu-bars:hover {
-     color: white;
+     color: aqua;
+     transition: color 1s ease;
 }
 
  .hide-menu {
      float: right;
-     color: #f76258;
      padding-right: 15px;
      cursor: pointer;
 }
 .hide-menu:hover {
-     color: white;
+     color: aqua;
+     transition: color 1s ease;
 }
 
  .filter-menu {

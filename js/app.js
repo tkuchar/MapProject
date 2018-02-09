@@ -14,10 +14,12 @@ function initMap() {
         // setcontent: contentString
     });
 
+    // Apply Knockout bindings.
     vm = new viewModel();
     ko.applyBindings(vm);
 }
 
+// Constructor function which is used to put Place objects into an observable array.
 let Place = function(i) {
 
     const self = this;
@@ -29,13 +31,16 @@ let Place = function(i) {
 
     // Create marker
     self.marker = new google.maps.Marker({
-        position: places[i].position,
+        position: places[i].location,
         map: map,
         title: places[i].title,
         animation: google.maps.Animation.DROP,
         });
 
-    self.content = '<p' + self.title + '<p>' + '<br>' + "<i class='fa fa-foursquare fa-1x' aria-hidden='true'></i>" + '  Foursquare Rating: Unavailable';
+    // Fetch Foursquare data to set Infowindow content.
+    fetchData(self);
+
+    self.content = "";
 
     self.marker.addListener('click', function() {
 
@@ -49,11 +54,10 @@ let Place = function(i) {
         basicInfowindow.setContent(self.content);
         basicInfowindow.open(map, marker);
 
-    fetchData(self);
+    });
 
-    })
+    basicInfowindow.setContent(self.content);
 
-    self.marker.setMap(map);
 };
 
 function viewModel() {
@@ -67,6 +71,7 @@ function viewModel() {
     for(let i = 0; i < places.length; i++){
         self.placeList.push(new Place(i));
     }
+
     self.selectedFilter = ko.observable();
     // Filter function
     self.filterList = ko.computed(function() {
@@ -83,6 +88,7 @@ function viewModel() {
         self.placeList().indexOf(listItem);
         listItem.marker.setVisible(true);
         listItem.marker.setAnimation(google.maps.Animation.DROP);
-        listItem.infowindow.open(map, listItem.marker);
-    }
+        basicInfowindow.setContent(listItem.content);
+        basicInfowindow.open(map, listItem.marker);
+    };
 }

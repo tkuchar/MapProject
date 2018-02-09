@@ -15,7 +15,7 @@ function updateKeywordMarkers() {
 
     list.forEach(function(element){
         // Close previously opened infowindows
-        element.infowindow.close();
+        basicInfowindow.close();
         let found = (element.keywords.indexOf(filter) > -1);
         if (found) {
             element.marker.setVisible(true)
@@ -32,30 +32,30 @@ function updateKeywordMarkers() {
 }
 
 function hideMenu() {
-    document.getElementById("options-container").style.display = "none";
+    document.getElementById("options-container").style.left = "-350px";
 }
 
 function showMenu() {
-    document.getElementById("options-container").style.display = "block";
+    document.getElementById("options-container").style.left = "0";
 }
 
 // FOURSQUARE API
 const apiKey = 'DCQOD4KGBXCXC2WIJHU0TFO4BKDIHXE1YENFAMM1OCUHNO0Q';
 const apiSecret = 'WFYXO1IHXL1APB3H3TEGUPYD24LU0C4Q42G14AUKO55JYMOX';
 
-function fetchData(target) {
-        fetch('https://api.foursquare.com/v2/venues/' + target.venueID + '?&client_id=' + apiKey + '&client_secret=' + apiSecret + '&v=20180126', {
+function fetchData(marker) {
+        fetch('https://api.foursquare.com/v2/venues/' + marker.venueID + '?&client_id=' + apiKey + '&client_secret=' + apiSecret + '&v=20180126', {
             method: 'GET',
             dataType: 'jsonp',
         }).then(function(response) {
             if (response.ok) {
-                console.log(response.ok);
+
                 return response.json();
             }
             throw new Error('There was a problem with the Foursquare API response: Error ' + response.status + '.');
         }).then(function(data){
-            console.log(data.reponse.venue.rating);
-            return target.content = data.response.venue.rating;
+
+            return marker.content = '<p>' + marker.title + '</p>' + '<br>' + "<i class='fa fa-foursquare fa-1x' aria-hidden='true'></i>" + '  Foursquare Rating: ' + data.response.venue.rating;
         }).catch(function(error) {
             document.getElementById("fourSquare").innerHTML = "Foursquare API Error: " + error.message;
         });
