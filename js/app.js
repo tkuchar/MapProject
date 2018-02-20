@@ -2,7 +2,7 @@
 
 function initMap() {
     // Initialize map.
-    let WoodlandHills = {
+    const WoodlandHills = {
         lat: 34.172846,
         lng: -118.612701
     };
@@ -19,9 +19,9 @@ function initMap() {
     ko.applyBindings(vm);
 }
 
-// Constructor function which is used to put Place objects into an observable array.
-let Place = function(i) {
-
+// ECMAScript6 class function which is used to put Place objects into an observable array.
+class Place {
+    constructor(i) {
     const self = this;
 
     this.title = places[i].title;
@@ -47,7 +47,7 @@ let Place = function(i) {
         const marker = this;
 
         this.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout(function(){
+        setTimeout(() => {
             marker.setAnimation(null);
             }, 2100);
 
@@ -57,7 +57,7 @@ let Place = function(i) {
     });
 
     basicInfowindow.setContent(self.content);
-
+}
 };
 
 function viewModel() {
@@ -74,7 +74,7 @@ function viewModel() {
 
     self.selectedFilter = ko.observable();
     // Filter function
-    self.filterList = ko.computed(function() {
+    self.filterList = ko.computed(() => {
         if (!self.selectedFilter()) {
             return self.placeList();
         } else {
@@ -84,11 +84,11 @@ function viewModel() {
         }
     });
 
-    self.updateTitleMarkers = function(listItem) {
+    self.updateTitleMarkers = (listItem => {
         self.placeList().indexOf(listItem);
         listItem.marker.setVisible(true);
         listItem.marker.setAnimation(google.maps.Animation.DROP);
         basicInfowindow.setContent(listItem.content);
         basicInfowindow.open(map, listItem.marker);
-    };
+    });
 }
