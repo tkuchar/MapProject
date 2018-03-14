@@ -11,7 +11,7 @@ html, body {
 
  #site-bar {
      width: 100%;
-     font-size: 26px;
+     font-size: 1.5em;
      letter-spacing: 1px;
      text-align: center;
      margin: 0 auto;
@@ -119,4 +119,11 @@ ul {
     text-align: center;
     color: red;
     font-size: 25px;
+}
+
+@media only screen and (max-width: 600px) {
+     #site-bar {
+          font-size: 1em;
+          height: 45px;
+     }
 }
