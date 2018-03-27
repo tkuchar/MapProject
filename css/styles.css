@@ -91,6 +91,13 @@ h3 {
  p {
      font-weight: bold;
      margin: 0 auto;
+     text-decoration: underline;
+}
+
+img {
+     border: .5px solid #ed3b3b;
+     margin: 2px;
+     margin-bottom: 4px;
 }
 
  button {

@@ -1,5 +1,7 @@
 /* Application JS which contains MVVM */
 
+let map, basicInfowindow;
+
 function initMap() {
     // Initialize map.
     const WoodlandHills = {
@@ -73,7 +75,8 @@ function viewModel() {
     }
 
     self.selectedFilter = ko.observable();
-    // Filter function
+
+    // Filters the <li> elements based on filter selection.
     self.filterList = ko.computed(() => {
         if (!self.selectedFilter()) {
             return self.placeList();
@@ -84,11 +87,32 @@ function viewModel() {
         }
     });
 
+    // Updates the map marker when a list item is clicked in the menu.
     self.updateTitleMarkers = (listItem => {
         self.placeList().indexOf(listItem);
         listItem.marker.setVisible(true);
         listItem.marker.setAnimation(google.maps.Animation.DROP);
         basicInfowindow.setContent(listItem.content);
         basicInfowindow.open(map, listItem.marker);
+    });
+
+    // Updates the map markers when a filter is applied.
+    self.updateMapMarkers = (filter => {
+        self.placeList().forEach(element => {
+
+            basicInfowindow.close();
+
+            let found = (element.keywords.indexOf(self.selectedFilter()) > -1);
+                if (found) {
+                element.marker.setVisible(true)
+                element.marker.setAnimation(google.maps.Animation.DROP);
+                }
+                else
+                    element.marker.setVisible(false)
+                if (event.target.value === "") {
+                    element.marker.setVisible(true)
+                    element.marker.setAnimation(google.maps.Animation.DROP);
+                }
+        });
     });
 }
