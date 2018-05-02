@@ -97,7 +97,7 @@ function viewModel() {
     });
 
     // Updates the map markers when a filter is applied.
-    self.updateMapMarkers = (filter => {
+    self.updateMapMarkers = (e, event) => {
         self.placeList().forEach(element => {
 
             basicInfowindow.close();
@@ -114,5 +114,5 @@ function viewModel() {
                     element.marker.setAnimation(google.maps.Animation.DROP);
                 }
         });
-    });
+    };
 }
